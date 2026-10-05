@@ -109,23 +109,6 @@
     $$("[data-reveal]").forEach(function (el) { el.classList.add("is-in"); });
   }
 
-  /* ---------- videos: play only while on screen; pick phone/desktop file ---------- */
-  $$("video[data-src-d]").forEach(function (v) {
-    var wide = window.innerWidth / window.innerHeight > 0.85;
-    v.poster = v.getAttribute(wide ? "data-poster-d" : "data-poster-m") || v.poster;
-    v.src = v.getAttribute(wide ? "data-src-d" : "data-src-m");
-  });
-  if ("IntersectionObserver" in window) {
-    var vio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        var v = e.target;
-        if (e.isIntersecting && !reduce) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-        else v.pause();
-      });
-    }, { threshold: 0.15 });
-    $$("video[data-autoplay]").forEach(function (v) { v.muted = true; vio.observe(v); });
-  }
-
   /* ---------- parallax on the view band (transform only) ---------- */
   var pImgs = $$("[data-parallax]");
   if (pImgs.length && !reduce) {
@@ -212,6 +195,23 @@
     }
     requestAnimationFrame(frame);
   });
+
+  /* ---------- videos: play only while on screen; pick phone/desktop file ---------- */
+  $$("video[data-src-d]").forEach(function (v) {
+    var wide = window.innerWidth / window.innerHeight > 0.85;
+    v.poster = v.getAttribute(wide ? "data-poster-d" : "data-poster-m") || v.poster;
+    v.src = v.getAttribute(wide ? "data-src-d" : "data-src-m");
+  });
+  if ("IntersectionObserver" in window) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting && !reduce) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        else v.pause();
+      });
+    }, { threshold: 0.15 });
+    $$("video[data-autoplay]").forEach(function (v) { v.muted = true; vio.observe(v); });
+  }
 
   /* ---------- reviews ---------- */
   var revWrap = $("[data-reviews]");

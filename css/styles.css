@@ -552,3 +552,4 @@ ul, ol { padding: 0; list-style: none; }
   .js [data-reveal] { opacity: 1; transform: none; }
 }
 .descent[data-tone="cream"] .scroll-cue { opacity: 0; transition: opacity .5s var(--ease); }
+.nowrap { white-space: nowrap; }
