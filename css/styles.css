@@ -454,7 +454,8 @@ ul, ol { padding: 0; list-style: none; }
 .field input:invalid:not(:placeholder-shown) { box-shadow: 0 0 0 2px rgba(180,104,58,.5); }
 .choices { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
 .choices legend { margin-bottom: 10px; padding: 0; }
-.choice input { position: absolute; opacity: 0; pointer-events: none; }
+.choice { position: relative; }
+.field .choice input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; min-height: 0; padding: 0; opacity: 0; pointer-events: none; }
 .choice span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--sand); font-size: 15px; cursor: pointer; transition: background-color .25s var(--ease), color .25s var(--ease); }
 .choice input:checked + span { background: var(--ink); color: var(--cream); }
 .choice input:focus-visible + span { outline: 2px solid var(--clay); outline-offset: 2px; }
